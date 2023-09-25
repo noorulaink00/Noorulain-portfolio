@@ -1,0 +1,178 @@
+
+import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import * as React from 'react';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import { faBlog } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faGithub, faMediumM } from '@fortawesome/free-brands-svg-icons';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import DeveloperModeIcon from '@mui/icons-material/DeveloperMode';
+import { faLaptopCode, faAddressBook } from '@fortawesome/free-solid-svg-icons';
+import { faCode } from '@fortawesome/free-solid-svg-icons';
+import { useMediaQuery } from '@mui/material';
+import "../../Pages/Home/Home.css"
+import Grid from '@mui/material/Grid';
+import logo from "../../assets/logo2.png"
+
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Check if the screen size is 'sm' or smaller
+  const isSmallScreen = useMediaQuery('(max-width:700px)');
+  const socialIcons = [
+    { icon: faLinkedin, link: 'https://www.linkedin.com/in/noor-ul-ain-670096190/' },
+    { icon: faGithub, link: 'https://github.com/noorulaink00' },
+    { icon: faMediumM, link: 'https://medium.com/@noorulaink00' },
+    { icon: faEnvelope, link: 'mailto:noorulaink00@gmail.com' },
+  ];
+
+  const menuItems = [
+    { icon: faLaptopCode ,label: 'Services', path: '#skills' },
+    { icon: faCode ,label: 'Projects', path: '#projects' },
+    { icon: faBlog ,label: 'Blog', path: '#blog' },
+    { icon: faAddressBook,label: 'Contact', path: '#contact' },
+  ];
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#006064', // Change this color to set the AppBar background color
+      },
+    },
+  });
+  // Function to handle menu button click
+  const handleMenuClick = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <div className="header">
+    <Toolbar >
+      <Grid container justifyContent="space-between" alignItems="center" >
+        <Grid item className='logo'>
+          {/*  <Typography variant="h6">
+          <FontAwesomeIcon icon={faCode} size="lg" style={{ marginRight: '10px' , }} />
+          Noor Ul Ain
+          </Typography>
+    */}
+       
+      <CardMedia
+        component="img"
+        alt="Example Image"
+        style={{marginTop:'10px', marginLeft:'10px'}}
+        height="70"
+        image={logo}
+      />
+
+        </Grid>
+        
+        <Grid item>
+
+        {menuItems.map((menu, index) => (
+                <Button
+                  key={index}
+                  variant="contain"
+                  style={{color: 'black' , transition: 'background-color 0.3s, color 0.3s', marginLeft:'30px' }}
+                  sx={{
+                    my: 1,
+                    padding:"10px"
+                  }}
+                  href={menu.path}
+                  rel="noopener noreferrer"
+                  className='menuitems'
+                >
+             <div style={{ display: 'flex', alignItems: 'center' }}>
+             <FontAwesomeIcon icon={menu.icon} size="lg" style={{ marginRight: '10px' }} />
+            <Typography variant="h6">{menu.label}</Typography>
+  </div>
+                </Button>
+              ))}
+        </Grid>
+
+
+
+        {isSmallScreen ? (
+          <Grid item>
+            <IconButton
+              edge="end"
+              color="inherit"
+              aria-label="menu"
+              onClick={handleMenuClick}
+            >
+              <MenuIcon />
+            </IconButton>
+          </Grid>
+        ) : (
+          !isSmallScreen && socialIcons.length > 0 && (
+     
+            <Grid item>
+              {socialIcons.map((socialIcon, index) => (
+                <IconButton
+                  key={index}
+                  variant="cover"
+                
+                  style={{ padding: '5px 10px',color: "#420d50"}}//backgroundColor: 'purple',
+                  sx={{
+                    my: 1,
+                   
+                  }}
+                  href={socialIcon.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className='socialicon'
+                >
+                  <div>
+                  <FontAwesomeIcon icon={socialIcon.icon} size="lg" />
+                  </div>
+                 
+                </IconButton>
+              ))}
+            </Grid>
+          )
+        )}
+      </Grid>
+    </Toolbar>
+
+    {isSmallScreen && isMenuOpen && (
+      <Box display="flex" justifyContent="flex-end" p={2}>
+        <a href="/menu-item-1">Menu Item 1 here</a>
+        <a href="/menu-item-2">Menu Item 2</a>
+        {/* Add more menu items as needed */}
+        {socialIcons.map((socialIcon, index) => (
+          <Button
+            key={index}
+            variant="outlined"
+            style={{ backgroundColor: 'purple', color: 'white'}}
+            sx={{
+              my: 1,
+              width: '40px',
+              height: '40px',
+            }}
+            href={socialIcon.link}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={socialIcon.icon} />
+          </Button>
+        ))}
+      </Box>
+    )}
+
+
+</div>
+  )
+}
+
+export default Navbar

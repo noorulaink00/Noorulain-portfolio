@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  
+}
+
+/* Styles for the service heading */
+.service-heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 30px; /* Adjust the spacing below the heading */
+}
+
+.service-heading h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #420d50;
+  /* color:#08597a; */
+}
+
+/* Styles for the line */
+.service-heading .line {
+  width: 50px; /* Adjust the width of the line */
+  height: 2px; /* Adjust the thickness of the line */
+  background-color: #333; /* Adjust the color of the line */
+  margin: 0 auto; /* Center the line horizontally */
+}
+.service-heading button:active{
+background-color: #333;
+}
+

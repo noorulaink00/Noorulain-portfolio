@@ -1,0 +1,17 @@
+/* ContactForm.module.css */
+
+.formContainer {
+    padding: 160px;
+
+    border-radius: 80px;
+    
+  }
+  
+  .textField {
+    margin-bottom: 16px;
+  }
+  
+  .button {
+    margin-top: 16px;
+  }
+  

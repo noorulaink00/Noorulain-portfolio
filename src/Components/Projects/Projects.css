@@ -1,0 +1,23 @@
+/* Add this CSS to your external stylesheet or a style block in your component */
+
+/* Flex container for project cards */
+.project-cards {
+    display: flex;
+    flex-wrap: wrap; /* Wrap to the next row when there's not enough space */
+    justify-content: center; /* Center-align the cards horizontally */
+    gap: 20px; /* Adjust the gap between cards */
+  }
+  
+  /* Project card styles */
+  .project-card {
+    width: calc(50% - 10px); /* Set the width to 50% minus the gap */
+    /* Add other card styles (e.g., box-shadow, border, etc.) here */
+  }
+  
+  /* Media query for smaller screens (e.g., mobile) */
+  @media (max-width: 767px) {
+    .project-card {
+      width: 100%; /* Full width for single card on smaller screens */
+    }
+  }
+  
