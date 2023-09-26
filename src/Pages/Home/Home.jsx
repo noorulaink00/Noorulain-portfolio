@@ -13,7 +13,6 @@ import ContactForm from "../../Components/Contact Form/ContactForm";
 import Footer from "../../Components/Footer/Footer";
 import Blog from "../../Components/Blog/Blog";
 import main from "../../assets/mainl.png"
-
 import IconButton from '@mui/material/IconButton';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLinkedin, faGithub, faMediumM } from '@fortawesome/free-brands-svg-icons';
@@ -45,6 +44,22 @@ const Home = () => {
 
   const currentText = texts[textIndex];
 
+  const handleDownloadClick = () => {
+    const pdfFileUrl = 'public/Noorulain.pdf';
+
+    const link = document.createElement('a');
+    link.href = pdfFileUrl;
+    link.download = 'Noorulain-Resume.pdf'; 
+    link.style.display = 'none';
+  
+
+    document.body.appendChild(link);
+    link.click();
+  
+    document.body.removeChild(link);
+  };
+  
+
   return (
     <>
       <Navbar />
@@ -72,6 +87,7 @@ const Home = () => {
             <Button
               variant="contained"
               style={{ backgroundColor: "#420d50", padding: " 10px 40px" }}
+              onClick={handleDownloadClick}
             >
               Download Resume
             </Button>
